@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\TempImageController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthenticationController;
@@ -18,5 +20,12 @@ Route::group(['middleware' => ['auth:sanctum']],function(){
     //protected Routes
     Route::get('/dashboard', [DashboardController::class, 'index']);
     Route::get('/logout', [AuthenticationController::class, 'logout']);
+    //service route
+    Route::post('/services', [ServiceController::class, 'store']);
+    Route::get('services', [ServiceController::class, 'index']);
+
+   // Temp image upload route
+   Route::post('temp-images', [TempImageController::class, 'store']);
+
 
 });
